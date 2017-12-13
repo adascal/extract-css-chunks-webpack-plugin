@@ -354,17 +354,7 @@ function getPath(compilation, source, chunk) {
 	}
 }
 
-function isChunk(chunk, error) {
-	if (!(chunk instanceof Chunk)) {
-		throw new Error(typeof error === 'string' ? error : 'chunk is not an instance of Chunk');
-	}
-
-	return true;
-}
-
 function forEachChunkModule(chunk, cb) {
-	isChunk(chunk);
-
 	// webpack >= 3.x.x
 	if (typeof chunk.forEachModule === 'function') {
 		chunk.forEachModule(cb);
@@ -379,8 +369,6 @@ function forEachChunkModule(chunk, cb) {
 }
 
 function getChunkModulesArray(chunk) {
-	isChunk(chunk);
-
 	var arr = [];
 
 	// webpack >= 3.x.x
